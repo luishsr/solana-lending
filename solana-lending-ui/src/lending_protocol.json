@@ -1,0 +1,197 @@
+{
+  "version": "0.0.0",
+  "name": "lending_protocol",
+  "instructions": [
+    {
+      "name": "deposit",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userCollateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultCollateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "collateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "borrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userLoanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLoanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "collateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "loanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "borrowAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "repay",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userLoanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultLoanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "loanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "liquidate",
+      "accounts": [
+        {
+          "name": "liquidator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vaultCollateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "collateralAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "loanAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "CollateralAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LoanAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "borrowed",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "LendingError",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "InsufficientCollateral"
+          },
+          {
+            "name": "NotLiquidatable"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[programs.localnet]
+lending_protocol = "LndngPgrm1111111111111111111111111111111111"
+
+[programs.devnet]
+lending_protocol = "LndngPgrm1111111111111111111111111111111111"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/Users/luissoares/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
