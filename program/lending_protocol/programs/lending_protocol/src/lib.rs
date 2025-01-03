@@ -1,11 +1,18 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, Token, TokenAccount, Transfer};
 
-declare_id!("LndngPgrm1111111111111111111111111111111111");
+declare_id!("DbJCU2hB6xdRmfJ4YZFBTbVd9Sx4RqgTGyDqW25NrK1s");
 
 #[program]
 pub mod lending_protocol {
     use super::*;
+
+    pub fn initialize_collateral_account(
+        ctx: Context<InitializeCollateralAccount>,
+    ) -> Result<()> {
+        ctx.accounts.collateral_account.amount = 0;
+        Ok(())
+    }
 
     pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
         token::transfer(ctx.accounts.into_transfer_to_vault_context(), amount)?;
@@ -50,6 +57,15 @@ pub mod lending_protocol {
         ctx.accounts.loan_account.borrowed = 0;
         Ok(())
     }
+}
+
+#[derive(Accounts)]
+pub struct InitializeCollateralAccount<'info> {
+    #[account(init, payer = user, space = 8 + 8)] // Account discriminator + u64 amount
+    pub collateral_account: Account<'info, CollateralAccount>,
+    #[account(mut)]
+    pub user: Signer<'info>,
+    pub system_program: Program<'info, System>,
 }
 
 #[derive(Accounts)]
