@@ -1,8 +1,8 @@
 [programs.localnet]
-lending_protocol = "DbJCU2hB6xdRmfJ4YZFBTbVd9Sx4RqgTGyDqW25NrK1s"
+lending_protocol = "EXa8m4H4vavv5fa8CdjMS6eDvSzqXaYWjhMN3fPmyqVh"
 
 [programs.devnet]
-lending_protocol = "DbJCU2hB6xdRmfJ4YZFBTbVd9Sx4RqgTGyDqW25NrK1s"
+lending_protocol = "EXa8m4H4vavv5fa8CdjMS6eDvSzqXaYWjhMN3fPmyqVh"
 
 [registry]
 url = "https://anchor.projectserum.com"
